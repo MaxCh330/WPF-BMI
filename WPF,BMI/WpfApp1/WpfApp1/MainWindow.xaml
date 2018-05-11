@@ -1,0 +1,101 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="547.661" Width="316.056"
+        ResizeMode="NoResize" 
+        AllowsTransparency="True" WindowStyle="None" Background="Transparent" BorderThickness="0">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="350"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border CornerRadius="15,15,0,0" Grid.Row="0" Margin="0,0,0,333" Grid.RowSpan="2">
+            
+            <!-- 漸層背景 -->
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0, 1">
+                    <GradientStop Color="#FFEC5C0A" Offset="0.0" />
+                    <GradientStop Color="#FFFB9459" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <!--男女標準選擇-->
+                <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="maleCheckbox" Margin="50 20 10 10" Foreground="White" FontSize="20" Checked="maleCheckbox_Checked">Male</CheckBox>
+                <CheckBox x:Name="femaleCheckbox" Margin="30 20 10 10" Foreground="White" FontSize="20" Checked="femaleCheckbox_Checked">Female</CheckBox>
+            </StackPanel>
+        </Border>
+        <Border CornerRadius="0,0,0,0" Grid.Row="1" Margin="0,5,0,0">
+
+            <!-- 漸層背景 -->
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0, 1">
+                    <GradientStop Color="#FFF88B4C" Offset="0.0" />
+                    <GradientStop Color="#FFFB8484" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel Margin="10,20">
+
+                <!-- 身高 -->
+                <TextBlock Foreground="White" TextAlignment="Center" Margin="0,0,0,0" FontSize="30">HEIGHT</TextBlock>
+                <Canvas Height="40">
+                    <Border CornerRadius="15" Background="#44ffffff" x:Name="HeightRect">
+
+                        <!-- 數字 & 單位 -->
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Width="45" Padding="0 7" TextAlignment="Right" Foreground="#eeffffff" FontSize="15" x:Name="HeightNumber">110</TextBlock>
+                            <TextBlock Width="35" Padding="3 10 0 0" TextAlignment="Left" Foreground="#eeffffff" FontSize="12">cm</TextBlock>
+                        </StackPanel>
+                    </Border>
+                </Canvas>
+                <Slider Width="280" Minimum="110" Maximum="200" x:Name="HeightSlider" ValueChanged="HeightSlider_ValueChanged" TickFrequency="1" IsSnapToTickEnabled="True" Height="16"></Slider>
+
+                <!-- 體重 -->
+                <TextBlock Foreground="White" TextAlignment="Center" Margin="0,20,0,10" FontSize="30">WEIGHT</TextBlock>
+                <Canvas Height="40">
+                    <Border CornerRadius="15" Background="#44ffffff" x:Name="WeightRect">
+
+                        <!-- 數字 & 單位 -->
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Width="40" Padding="0 7" TextAlignment="Right" Foreground="#eeffffff" FontSize="15" x:Name="WeightNumber">30</TextBlock>
+                            <TextBlock Width="40" Padding="3 10 0 0" TextAlignment="Left" Foreground="#eeffffff" FontSize="12">kg</TextBlock>
+                        </StackPanel>
+                    </Border>
+                </Canvas>
+                <Slider Width="280" Minimum="30" Maximum="120" x:Name="WeightSlider" ValueChanged="WeightSlider_ValueChanged" TickFrequency="1" IsSnapToTickEnabled="True" Height="16"/>
+            </StackPanel>
+        </Border>
+        <!-- 下半部結果區 -->
+        <Border CornerRadius="0,0,15,15" Grid.Row="2" Background="White">
+            <Canvas>
+                <StackPanel Margin="20" >
+                    <TextBlock FontWeight="Bold">BMI</TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="45" FontWeight="Bold" Foreground="#FFFF546B" x:Name="BmiNumber1">24</TextBlock>
+                        <TextBlock FontSize="25" FontWeight="Bold" Margin="0,6,0,0" Foreground="#FFFF546B" x:Name="BmiNumber2">.8</TextBlock>
+                    </StackPanel>
+                    <TextBlock FontSize="14" Margin="0,1,0,0" Foreground="#FFCCCCCC" x:Name="ResultText" Height="19"></TextBlock>
+                </StackPanel>
+
+                <!-- 重置按鈕 -->
+                <Grid Width="80" Height="80" Canvas.Right="25" Canvas.Top="-42" Panel.ZIndex="10" x:Name="ResetBtn" MouseLeftButtonDown="ResetBtn_MouseLeftButtonDown" Canvas.Left="216">
+                    <Ellipse Fill="White">
+                        <Ellipse.Effect>
+                            <DropShadowEffect Opacity="0.2" Direction="-90" Color="#FFBD1212" BlurRadius="20"></DropShadowEffect>
+                        </Ellipse.Effect>
+                    </Ellipse>
+                    <TextBlock FontFamily="Wingdings 3" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFF9616F" Margin="20,20,0,0" Width="60" Height="60"  >P</TextBlock>
+                </Grid>
+            </Canvas>
+        </Border>
+
+        <!-- 關閉按鈕 -->
+        <StackPanel Height="40" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Ellipse Width="15" Height="15" Fill="#77FFCFBA" Margin="8" x:Name="CloseBtn" MouseLeftButtonDown="CloseBtn_MouseLeftButtonDown"></Ellipse>
+        </StackPanel>
+    </Grid>
+</Window>
